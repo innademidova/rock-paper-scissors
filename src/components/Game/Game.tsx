@@ -60,6 +60,7 @@ const Game = ({playerName}: Props) => {
             }
         })()
     }, [playerName])
+
     const setChoice = (choice: Choice) => {
         setMyChoice(choice);
         gameService.makeChoice(choice)
