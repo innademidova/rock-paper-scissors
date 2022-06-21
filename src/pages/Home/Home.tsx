@@ -12,7 +12,7 @@ const Home = ({setPlayerName, playerName}: Props) => {
     return (
         <div className={classes.main}>
             <h1>ROCK PAPER SCISSORS</h1>
-            <input placeholder={'Enter your name'} className={classes['player-name']} value={playerName}
+            <input placeholder={'Enter your name'} className={classes.playerName} value={playerName}
                    onChange={(event) => {
                        setPlayerName(event.target.value)
                        localStorage.setItem('userName', event.target.value)

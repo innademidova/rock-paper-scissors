@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import './App.css';
-import Home from './components/Home/Home';
-import Game from './components/Game/Game';
+import './index.css';
+import Home from '../pages/Home/Home';
+import Game from '../pages/Game/Game';
 import {Routes, Route} from 'react-router-dom';
 
-function App() {
+function Index() {
     const [playerName, setPlayerName] = useState<string>(localStorage.getItem('userName') || '');
 
     return (
@@ -18,4 +18,4 @@ function App() {
     );
 }
 
-export default App;
+export default Index;

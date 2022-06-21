@@ -1,4 +1,4 @@
-import {OutcomeType} from '../shared/models/game';
+import {OutcomeType} from '../models/game';
 
 export const getUpdatedScores = (outcome: OutcomeType, scores: [number, number]): [number, number] => {
     if(outcome==='win') {

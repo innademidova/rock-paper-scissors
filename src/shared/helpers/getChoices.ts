@@ -1,4 +1,4 @@
-import {Choice, GameResult} from '../shared/models/game';
+import {Choice, GameResult} from '../models/game';
 
 export const getChoices = (gameResults: GameResult, myName: string): [Choice, Choice] => {
     const [firstChoice, secondChoice] = gameResults.results;

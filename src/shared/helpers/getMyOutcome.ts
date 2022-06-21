@@ -1,4 +1,4 @@
-import {Choice, OutcomeType} from '../shared/models/game';
+import {Choice, OutcomeType} from '../models/game';
 
 export const getMyOutcome = (myChoice: Choice, opponentsChoice: Choice): OutcomeType => {
     if ((myChoice === 'rock' && opponentsChoice === 'scissors') ||

@@ -1,11 +1,11 @@
-import {rock, paper, scissors} from '../../accets/images/index'
+import {rock, paper, scissors} from '../../shared/images'
 import React, {useEffect, useState} from 'react';
-import ScoreBoard from '../ScoreBoard/ScoreBoard';
+import ScoreBoard from '../../entities/ScoreBoard/ScoreBoard';
 import {Choice, GameResult, OutcomeType, Player} from '../../shared/models/game';
 import classes from './Game.module.css'
-import {getChoices, getMyOutcome, getUpdatedScores} from '../../helpers';
+import {getChoices, getMyOutcome, getUpdatedScores} from '../../shared/helpers';
 import gameService from '../../shared/services/gameService';
-import {confirmRefreshPage} from '../../helpers/confirmRefreshPage';
+import {confirmRefreshPage} from '../../shared/helpers/confirmRefreshPage';
 import { Navigate } from 'react-router-dom';
 
 interface Props {
