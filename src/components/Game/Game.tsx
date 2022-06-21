@@ -6,16 +6,19 @@ import classes from './Game.module.css'
 import {getChoices, getMyOutcome, getUpdatedScores} from '../../helpers';
 import gameService from '../../shared/services/gameService';
 import {confirmRefreshPage} from '../../helpers/confirmRefreshPage';
+import { Navigate } from 'react-router-dom';
 
 interface Props {
     playerName: string | undefined;
 }
 
 const Game = ({playerName}: Props) => {
+    if(!playerName) {
+        return <Navigate to={'/'}/>
+    }
     useEffect(confirmRefreshPage, []);
 
     const [opponentName, setOpponentName] = useState<string | undefined>(undefined);
-
     const [scores, setScores] = useState<[number, number]>([0, 0]);
     const [myChoice, setMyChoice] = useState<Choice | undefined>(undefined);
     const [opponentChoice, setOpponentChoice] = useState<Choice | undefined>(undefined)
@@ -84,8 +87,7 @@ const Game = ({playerName}: Props) => {
     };
     return (
         <>
-            <ScoreBoard playerName={playerName} opponentName={opponentName}
-                        scores={scores}/>
+            <ScoreBoard playerName={playerName} opponentName={opponentName} scores={scores}/>
             <div className={classes.game}>
                 <div className={classes.status}>{status}</div>
                 <div className={classes.elements}>
@@ -102,8 +104,12 @@ const Game = ({playerName}: Props) => {
                     {gameOutcome === 'draw' && <h2>Draw</h2>}
                     {gameOutcome &&
                         <>
-                            <p> Opponent's choice: </p> <img alt={opponentChoice} src={opponentChoice === 'scissors' ?
-                            scissors : opponentChoice === 'rock' ? rock : paper}/>
+                            <p> Opponent's choice: </p>
+                            <img alt={opponentChoice} src={opponentChoice === 'scissors'
+                                ? scissors
+                                : opponentChoice === 'rock'
+                                    ? rock
+                                    : paper}/>
                         </>
                     }
                 </div>

@@ -10,15 +10,15 @@ interface Props {
 const ScoreBoard = ({playerName, opponentName, scores}: Props) => {
 
     return (
-        <div className={classes['score-board']}>
+        <div className={classes.scoreBoard}>
             <h5>ROCK PAPER SCISSORS</h5>
             <div className={classes.badge}>
-                <p className={classes['scoreboard-player-name']}>{playerName || 'Player1'}</p>
+                <p className={classes.scoreboardPlayerName}>{playerName || 'Player1'}</p>
                 <p className={classes.score}>{scores[0]}</p>
             </div>
             <p>:</p>
             <div className={classes.badge}>
-                <p className={classes['scoreboard-player-name']}>{opponentName || 'Player2'}</p>
+                <p className={classes.scoreboardPlayerName}>{opponentName || 'Player2'}</p>
                 <p className={classes.score}>{scores[1]}</p>
             </div>
         </div>)

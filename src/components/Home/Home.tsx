@@ -1,13 +1,14 @@
 import React from 'react';
-import classes from './Main.module.css'
+import classes from './Home.module.css'
+import {useNavigate} from "react-router-dom";
 
 interface Props {
-    setIsGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
     setPlayerName: React.Dispatch<React.SetStateAction<string>>;
     playerName: string;
 }
 
-const Main = ({setIsGameStarted, setPlayerName, playerName}: Props) => {
+const Home = ({setPlayerName, playerName}: Props) => {
+    const navigate= useNavigate();
     return (
         <div className={classes.main}>
             <h1>ROCK PAPER SCISSORS</h1>
@@ -17,7 +18,7 @@ const Main = ({setIsGameStarted, setPlayerName, playerName}: Props) => {
                        localStorage.setItem('userName', event.target.value)
                    }}/>
             <button disabled={!playerName} onClick={() => {
-                setIsGameStarted(true)
+                navigate('/game')
             }}>LET'S PLAY
             </button>
         </div>
@@ -25,4 +26,4 @@ const Main = ({setIsGameStarted, setPlayerName, playerName}: Props) => {
     )
 }
 
-export default Main;
+export default Home;
