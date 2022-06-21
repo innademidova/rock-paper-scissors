@@ -1,11 +1,14 @@
-import { io, Socket } from "socket.io-client";
+import {io, Socket} from "socket.io-client";
 import gameService from "./gameService";
+import {v4 as uuidv4} from 'uuid';
 
 class SocketService {
     public connect(
         url: string,
         username: string
-    ): Promise<Socket>{
+    ): Promise<Socket> {
+        let ewr = 3253;
+
         return new Promise((rs, rj) => {
             const socket = io(url, {
                 query: {
@@ -17,8 +20,7 @@ class SocketService {
 
             socket.on("connect", () => {
                 console.log('connected inside service')
-                gameService.socket = socket;
-                rs(socket as Socket);
+                rs(socket);
             });
 
             socket.on("connect_error", (err) => {

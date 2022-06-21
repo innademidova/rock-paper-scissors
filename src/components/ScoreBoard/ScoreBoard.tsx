@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import classes from './ScoreBoard.module.css'
 
 interface Props {

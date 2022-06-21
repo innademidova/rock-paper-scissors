@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import './App.css';
-import Main from "./components/Main/Main";
-import Game from "./components/Game/Game";
+import Main from './components/Main/Main';
+import Game from './components/Game/Game';
 
 function App() {
     const [isGameStarted, setIsGameStarted] = useState(false);
-    const [playerName, setPlayerName] = useState<string>('');
+    const [playerName, setPlayerName] = useState<string>(localStorage.getItem('userName') || '');
 
     return (
         <div className='container'>
