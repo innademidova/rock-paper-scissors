@@ -25,15 +25,20 @@ const Game = ({playerName}: Props) => {
         gameService.getPlayers();
         gameService.subscribeToOtherPlayerConnected((res) => {
                 setStatus(`${res.username} connected`);
+                setOpponentName(res.username)
             }
         )
         gameService.subscribeToOtherPlayerDisconnected((res) => {
                 setStatus(`${res.username} disconnected`)
+                setScores([0, 0])
             }
         )
         gameService.onPlayersReceived((players: string[]) => {
             const opponentsName = players.find(item => item !== currentPlayerName)
             setOpponentName(opponentsName)
+            if (opponentsName) {
+                setStatus(`${opponentsName} connected`)
+            }
         })
         gameService.onOpponentMadeChoice((players) => {
             setStatus(`${players.username} made choice`)
@@ -62,9 +67,8 @@ const Game = ({playerName}: Props) => {
     }, [playerName])
 
     const setChoice = (choice: Choice) => {
-        setMyChoice(choice);
-        gameService.makeChoice(choice)
-
+            setMyChoice(choice);
+            gameService.makeChoice(choice)
     };
     return (
         <>
@@ -72,24 +76,25 @@ const Game = ({playerName}: Props) => {
                         scores={scores}/>
             <div className={classes.game}>
                 <div className={classes.status}>{status}</div>
+                <div className={classes.elements}>
                 <img className={myChoice === 'rock' ? classes.chosen : ''} alt={'rock'} src={rock}
                      onClick={() => setChoice('rock')}/>
                 <img className={myChoice === 'paper' ? classes.chosen : ''} alt={'paper'} src={paper}
                      onClick={() => setChoice('paper')}/>
                 <img className={myChoice === 'scissors' ? classes.chosen : ''} alt={'scissors'} src={scissors}
                      onClick={() => setChoice('scissors')}/>
+                </div>
                 <div>
-                    <p> My choice:{myChoice} </p>
-                    <p> Opponent's choice:{opponentChoice}</p>
                     {gameOutcome === "win" && <h2>You Win</h2>}
                     {gameOutcome === "lose" && <h2>You lose</h2>}
                     {gameOutcome === "draw" && <h2>Draw</h2>}
+                    {gameOutcome &&
+                        <>
+                            <p> Opponent's choice: </p> <img alt={opponentChoice} src={opponentChoice === 'scissors' ?
+                            scissors: opponentChoice === 'rock' ? rock : paper} />
+                        </>
+                        }
                 </div>
-                <button onClick={() => {
-                    setMyChoice(undefined);
-                    setOpponentChoice(undefined);
-                    setGameOutcome(undefined);
-                }}>PLAY AGAIN</button>
             </div>
         </>
     )
